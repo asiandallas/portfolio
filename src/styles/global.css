@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap');
+
+@import "tailwindcss/preflight";
+@tailwind utilities;
+
+/* Modern, sleek editorial aesthetic */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-surface text-accent font-body;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Playfair Display, Georgia, serif;
+  color: #0f172a;
+}
+
+h1 {
+  @apply text-5xl md:text-7xl lg:text-8xl tracking-tight leading-tight;
+}
+
+h2 {
+  @apply text-3xl md:text-5xl tracking-tight;
+}
+
+p {
+  @apply leading-relaxed text-accent/90;
+}
+
+a { @apply transition-colors duration-200; }
+a:hover { @apply opacity-80; }
+
+/* Image styling */
+img { @apply w-full h-auto; }
+.photo-image { @apply rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300; }
+
+.section-spacing { @apply py-16 md:py-24 px-6 md:px-12 lg:px-24; }
+.container-max { @apply max-w-6xl mx-auto; }
+
+.text-body { @apply text-base md:text-lg leading-relaxed text-accent/85; }
+.text-caption { @apply text-sm text-muted uppercase tracking-widest; }
+
+.link-nav { @apply text-accent/90 hover:text-accent; }
+.link-cta { @apply inline-block px-8 py-3 border border-accent text-accent hover:bg-accent hover:text-white transition-colors duration-200 rounded-lg; }
+.link-social { @apply text-accent/70 hover:text-accent transition-colors; }
+
+/* Tab-style nav */
+.nav-tab { @apply text-base md:text-lg px-4 py-2 rounded-t-md; }
+.nav-tab-active { @apply border-b-2 border-accent text-accent font-semibold; }
+
