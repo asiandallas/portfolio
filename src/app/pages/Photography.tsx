@@ -7,8 +7,8 @@ const photos = [
   {
     id: 1,
     url: "public/images/photos/film/bay-bridge.jpg",
-    alt: "Bay bridge with bird",
-    title: "Gloomy Bay Bridge with Bird",
+    alt: "Gloomy Bay bridge with bird",
+    title: "Gloomy Bay Bridge",
     location: "San Francisco, CA",
     year: "2025",
     category: "Film",
@@ -34,8 +34,8 @@ const photos = [
   {
     id: 4,
     url: "public/images/photos/film/castro.jpg",
-    alt: "Castro Street in San Francisco",
-    title: "Castro Street",
+    alt: "The Castro",
+    title: "The Castro",
     location: "San Francisco, CA",
     year: "2026",
     category: "Film",
@@ -44,8 +44,8 @@ const photos = [
     id: 5,
     url: "public/images/photos/film/disneyland.jpg",
     alt: "Tea cup ride at Disneyland",
-    title: "Tea Cup Ride",
-    location: "Disneyland, CA",
+    title: "Mad Tea Party",
+    location: "Disneyland",
     year: "2026",
     category: "Film",
   },
@@ -71,8 +71,8 @@ const photos = [
     id: 8,
     url: "public/images/photos/film/rooftop.jpg",
     alt: "DJ at rooftop",
-    title: "Rooftop Party with DJ",
-    location: "San Francisco, CAA",
+    title: "Rooftop Party",
+    location: "San Francisco, CA",
     year: "2025",
     category: "Film",
   },
@@ -80,7 +80,7 @@ const photos = [
     id: 9,
     url: "public/images/photos/film/rooftop-2.jpg",
     alt: "Golden gate bridge from rooftop",
-    title: "Rooftop Party with Bridge View",
+    title: "Golden Gate Bridge from Rooftop",
     location: "San Francisco, CA",
     year: "2025",
     category: "Film",
@@ -153,7 +153,7 @@ const photos = [
     url: "public/images/photos/digital/iceberg.jpg",
     alt: "Iceberg",
     title: "Iceberg",
-    location: "Juneau, AK",
+    location: "Alaska",
     year: "2022",
     category: "Digital",
   },
@@ -170,7 +170,7 @@ const photos = [
     id: 19,
     url: "public/images/photos/digital/neon.jpg",
     alt: "Neon lights in Tokyo",
-    title: "Tokyo Neon",
+    title: "Shiinamachi Station",
     location: "Tokyo, Japan",
     year: "2026",
     category: "Digital",
@@ -184,11 +184,119 @@ const photos = [
     year: "2026",
     category: "Digital",
   },
+  {
+    id: 21,
+    url: "public/images/photos/portraits/becky.jpg",
+    alt: "Becky with a camera",
+    title: "Becky - SF Photowalk",
+    location: "San Francisco, CA",
+    year: "2026",
+    category: "Portraits",
+  },
+    {
+    id: 22,
+    url: "public/images/photos/portraits/becky2.jpg",
+    alt: "Becky at the beach",
+    title: "Becky - Carmel Beach",
+    location: "San Francisco, CA",
+    year: "2026",
+    category: "Portraits",
+  },
+  {
+    id: 23,
+    url: "public/images/photos/portraits/jonnette.jpg",
+    alt: "Jonnette grad shoot",
+    title: "Jonnette - Grad Shoot",
+    location: "San Marcos, CA",
+    year: "2024",
+    category: "Portraits",
+  },
+  {
+    id: 24,
+    url: "public/images/photos/portraits/jonnette2.jpg",
+    alt: "Jonnette grad shoot",
+    title: "Jonnette - Grad Shoot",
+    location: "San Marcos, CA",
+    year: "2024",
+    category: "Portraits",
+  },
+  {
+    id: 25,
+    url: "public/images/photos/digital/train-driver.jpg",
+    alt: "Train driver",
+    title: "Arashiyama Station",
+    location: "Kyoto, Japan",
+    year: "2026",
+    category: "Digital",
+  },
+  {
+    id: 26,
+    url: "public/images/photos/digital/jr-train.jpg",
+    alt: "JR Train",
+    title: "JR Train",
+    location: "Kyoto, Japan",
+    year: "2026",
+    category: "Digital",
+  },
+  {
+    id: 27,
+    url: "public/images/photos/digital/boat-ride.jpg",
+    alt: "Hozugawa River Boat Ride",
+    title: "Hozugawa River Boat Ride",
+    location: "Kameoka, Japan",
+    year: "2026",
+    category: "Digital",
+  },
+  {
+    id: 28,
+    url: "public/images/photos/digital/alaska-mountains.jpg",
+    alt: "Alaska Mountains",
+    title: "Alaska Mountains",
+    location: "Alaska",
+    year: "2022",
+    category: "Digital",
+  },
+  {
+    id: 29,
+    url: "public/images/photos/digital/nyc-bw.jpg",
+    alt: "New York City in Black and White",
+    title: "NYC B&W",
+    location: "New York City, NY",
+    year: "2025",
+    category: "Digital",
+  },
+  {
+    id: 30,
+    url: "public/images/photos/digital/sf-skyline.jpg",
+    alt: "San Francisco Skyline",
+    title: "SF Skyline Night",
+    location: "San Francisco, CA",
+    year: "2020",
+    category: "Digital",
+  },
+  {
+    id: 31,
+    url: "public/images/photos/film/shinjuku.jpg",
+    alt: "Shinjuku, Tokyo",
+    title: "Shinjuku Lights",
+    location: "Tokyo, Japan",
+    year: "2026", 
+    category: "Film",
+  },
 ];
 
 export function Photography() {
   const [activeCategory, setActiveCategory] = useState<Category>("All");
   const [hovered, setHovered] = useState<number | null>(null);
+
+  const captions: Partial<Record<Category, string>> = {
+    Digital: "Cameras: Sony a6700, Canon EOS Rebel SL2\nLens: Sigma 18-50mm f/2.8, Canon 50mm f/1.8, f/2.8,Canon EF 75-300mm f/4-5.6 III",
+    Film: "Cameras: Canon AE-1, Minolta P (Riva Panorama)\nFilms: Kodak Gold 200, Kodak Ultramax 400, Fujifilm 400\nSome scanned by me :)",
+    Portraits: "Mainly taken with Canon 50mm or Sigma 18-50mm",
+  };
+
+  const activeCaption = activeCategory !== "All" ? captions[activeCategory] ?? "" : "";
+  const captionLines = activeCaption ? activeCaption.split("\n") : [];
 
   const filtered = activeCategory === "All"
     ? photos
@@ -223,6 +331,24 @@ export function Photography() {
           >
             Photography
           </h1>
+          {activeCategory !== "All" && activeCaption && (
+            <p
+              style={{
+                marginTop: "2rem",      
+                fontFamily: "'DM Sans', sans-serif",
+                color: "var(--muted-foreground)",
+                fontSize: "0.95rem",
+                maxWidth: "70ch",
+              }}
+            >
+              {captionLines.map((line, idx) => (
+                <span key={idx}>
+                  {line}
+                  {idx < captionLines.length - 1 && <br />}
+                </span>
+              ))}
+            </p>
+          )}
         </div>
 
         {/* Filter tabs */}
