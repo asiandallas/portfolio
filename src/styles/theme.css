@@ -179,3 +179,58 @@
     line-height: 1.5;
   }
 }
+
+/* Nav link styling for hover/active state */
+.nav-link {
+  color: var(--muted-foreground);
+  text-decoration: none;
+}
+.nav-link:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+.nav-link.active {
+  color: var(--primary);
+  font-weight: 500;
+}
+
+/* Social icon hover */
+.social-icon {
+  color: var(--primary);
+  display: inline-block;
+  transition: color 160ms ease, transform 160ms ease;
+}
+.social-icon:hover {
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* Reveal on scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 420ms cubic-bezier(.2,.8,.2,1), transform 420ms cubic-bezier(.2,.8,.2,1);
+}
+.reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Header hide/show transition (used by Root.tsx) */
+.header-translate {
+  transform: translateY(0);
+  transition: transform 280ms ease;
+}
+.header-hidden {
+  transform: translateY(-110%);
+}
+
+/* Connector between sections for subtle parallax/blur */
+.connector {
+  height: 96px;
+  width: 100%;
+  pointer-events: none;
+  display: block;
+  background: radial-gradient( circle at 50% 50%, rgba(62,146,255,0.08), transparent 35% ), linear-gradient(180deg, rgba(8,12,20,0.0), rgba(8,12,20,0.2));
+  transition: transform 240ms linear, filter 240ms linear, opacity 240ms linear;
+}

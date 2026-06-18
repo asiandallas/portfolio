@@ -1,16 +1,31 @@
 import { Outlet, NavLink } from "react-router";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Menu, X } from "lucide-react";
 
 export function Root() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [headerHidden, setHeaderHidden] = useState(false);
+  const lastY = useRef(0);
 
   const navLinks = [
     { to: "/", label: "Home" },
-    { to: "/about", label: "About" },
+    { to: "/#about", label: "About" },
     { to: "/photography", label: "Photography" },
-    { to: "/contact", label: "Contact" },
   ];
+
+  useEffect(() => {
+    function onScroll() {
+      const y = window.scrollY || window.pageYOffset;
+      const delta = y - lastY.current;
+      // hide when scrolling down beyond small threshold, show when scrolling up
+      if (y > 80 && delta > 8) setHeaderHidden(true);
+      else if (delta < -8) setHeaderHidden(false);
+      lastY.current = y;
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   return (
     <div
@@ -19,7 +34,7 @@ export function Root() {
     >
       {/* Nav */}
       <header
-        className="sticky top-0 z-50"
+        className={`sticky top-0 z-50 header-translate ${headerHidden ? 'header-hidden' : ''}`}
         style={{ background: "rgba(8,12,20,0.85)", backdropFilter: "blur(16px)", borderBottom: "1px solid var(--border)" }}
       >
         <nav className="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
@@ -28,25 +43,26 @@ export function Root() {
             className="tracking-widest uppercase text-xs"
             style={{ fontFamily: "'Syne', sans-serif", fontWeight: 700, letterSpacing: "0.2em", color: "var(--foreground)", textDecoration: "none" }}
           >
-            Kyrstn Hall
+            KH
           </NavLink>
 
           {/* Desktop nav */}
           <ul className="hidden md:flex gap-8 list-none m-0 p-0">
             {navLinks.map(({ to, label }) => (
               <li key={to}>
-                <NavLink
-                  to={to}
-                  end={to === "/"}
-                  className="text-sm transition-all"
-                  style={({ isActive }) => ({
-                    color: isActive ? "var(--primary)" : "var(--muted-foreground)",
-                    textDecoration: "none",
-                    fontWeight: isActive ? 500 : 400,
-                  })}
-                >
-                  {label}
-                </NavLink>
+                {to.includes('#') ? (
+                  <a href={to} className="text-sm transition-all nav-link">
+                    {label}
+                  </a>
+                ) : (
+                  <NavLink
+                    to={to}
+                    end={to === "/"}
+                    className={({ isActive }) => `text-sm transition-all nav-link ${isActive ? 'active' : ''}`}
+                  >
+                    {label}
+                  </NavLink>
+                )}
               </li>
             ))}
           </ul>
@@ -69,19 +85,21 @@ export function Root() {
             style={{ borderTop: "1px solid var(--border)" }}
           >
             {navLinks.map(({ to, label }) => (
-              <NavLink
-                key={to}
-                to={to}
-                end={to === "/"}
-                onClick={() => setMenuOpen(false)}
-                className="text-sm py-1"
-                style={({ isActive }) => ({
-                  color: isActive ? "var(--primary)" : "var(--muted-foreground)",
-                  textDecoration: "none",
-                })}
-              >
-                {label}
-              </NavLink>
+              to.includes('#') ? (
+                <a key={to} href={to} onClick={() => setMenuOpen(false)} className="text-sm py-1 nav-link">
+                  {label}
+                </a>
+              ) : (
+                <NavLink
+                  key={to}
+                  to={to}
+                  end={to === "/"}
+                  onClick={() => setMenuOpen(false)}
+                  className={({ isActive }) => `text-sm py-1 nav-link ${isActive ? 'active' : ''}`}
+                >
+                  {label}
+                </NavLink>
+              )
             ))}
           </div>
         )}

@@ -1,9 +1,8 @@
 import { createBrowserRouter } from "react-router";
 import { Root } from "./Root";
 import { Home } from "./pages/Home";
-import { About } from "./pages/About";
+// About is now part of Home (in-page section)
 import { Photography } from "./pages/Photography";
-import { Contact } from "./pages/Contact";
 
 export const router = createBrowserRouter([
   {
@@ -11,9 +10,9 @@ export const router = createBrowserRouter([
     Component: Root,
     children: [
       { index: true, Component: Home },
-      { path: "about", Component: About },
+      // About removed as a separate route; it's an in-page section on Home
       { path: "photography", Component: Photography },
-      { path: "contact", Component: Contact },
+      
     ],
   },
 ]);
