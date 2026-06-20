@@ -2,11 +2,17 @@ import { useState } from "react";
 
 const categories = ["All", "Digital", "Film", "Portraits"] as const;
 type Category = (typeof categories)[number];
+/**
+ * Build BASE_URL-safe asset URLs by enforcing one trailing slash on BASE_URL
+ * and removing any leading slash from the asset path.
+ */
+const withBase = (path: string) =>
+  `${import.meta.env.BASE_URL.replace(/\/?$/, "/")}${path.replace(/^\//, "")}`;
 
 const photos = [
   {
     id: 1,
-    url: `${import.meta.env.BASE_URL}images/photos/film/bay-bridge.jpg`,
+    url: withBase("images/photos/film/bay-bridge.jpg"),
     alt: "Gloomy Bay bridge with bird",
     title: "Gloomy Bay Bridge",
     location: "San Francisco, CA",
@@ -15,16 +21,16 @@ const photos = [
   },
   {
     id: 2,
-    url: `${import.meta.env.BASE_URL}images/photos/film/car.jpg`,
+    url: withBase("images/photos/film/car.jpg"),
     alt: "Becky in the car",
-    title: "Roadtrip to Yosmite",
+    title: "Roadtrip to Yosemite",
     location: "Yosemite, CA",
     year: "2025",
     category: "Film",
   },
   {
     id: 3,
-    url: `${import.meta.env.BASE_URL}images/photos/film/carmel.jpg`,
+    url: withBase("images/photos/film/carmel.jpg"),
     alt: "View from car",
     title: "Roadtrip to Carmel",
     location: "Carmel, CA",
@@ -33,7 +39,7 @@ const photos = [
   },
   {
     id: 4,
-    url: `${import.meta.env.BASE_URL}images/photos/film/castro.jpg`,
+    url: withBase("images/photos/film/castro.jpg"),
     alt: "The Castro",
     title: "The Castro",
     location: "San Francisco, CA",
@@ -42,7 +48,7 @@ const photos = [
   },
   {
     id: 5,
-    url: `${import.meta.env.BASE_URL}images/photos/film/disneyland.jpg`,
+    url: withBase("images/photos/film/disneyland.jpg"),
     alt: "Tea cup ride at Disneyland",
     title: "Mad Tea Party",
     location: "Disneyland",
@@ -51,7 +57,7 @@ const photos = [
   },
   {
     id: 6,
-    url: `${import.meta.env.BASE_URL}images/photos/film/golden-gate-bridge.jpg`,
+    url: withBase("images/photos/film/golden-gate-bridge.jpg"),
     alt: "Golden Gate Bridge",
     title: "Golden Gate Bridge",
     location: "San Francisco, CA",
@@ -60,7 +66,7 @@ const photos = [
   },
   {
     id: 7,
-    url: `${import.meta.env.BASE_URL}images/photos/film/park.jpg`,
+    url: withBase("images/photos/film/park.jpg"),
     alt: "Park with friends",
     title: "Park with Friends",
     location: "San Francisco, CA",
@@ -69,7 +75,7 @@ const photos = [
   },
   {
     id: 8,
-    url: `${import.meta.env.BASE_URL}images/photos/film/rooftop.jpg`,
+    url: withBase("images/photos/film/rooftop.jpg"),
     alt: "DJ at rooftop",
     title: "Rooftop Party",
     location: "San Francisco, CA",
@@ -78,7 +84,7 @@ const photos = [
   },
   {
     id: 9,
-    url: `${import.meta.env.BASE_URL}images/photos/film/rooftop-2.jpg`,
+    url: withBase("images/photos/film/rooftop-2.jpg"),
     alt: "Golden gate bridge from rooftop",
     title: "Golden Gate Bridge from Rooftop",
     location: "San Francisco, CA",
@@ -87,7 +93,7 @@ const photos = [
   },
   {
     id: 10,
-    url: `${import.meta.env.BASE_URL}images/photos/film/santa-cruz.jpg`,
+    url: withBase("images/photos/film/santa-cruz.jpg"),
     alt: "Santa Cruz Boardwalk",
     title: "Santa Cruz Boardwalk",
     location: "Santa Cruz, CA",
@@ -96,7 +102,7 @@ const photos = [
   },
   {
     id: 11,
-    url: `${import.meta.env.BASE_URL}images/photos/film/sutro-baths.jpg`,
+    url: withBase("images/photos/film/sutro-baths.jpg"),
     alt: "Sutro Baths",
     title: "Sutro Baths",
     location: "San Francisco, CA",
@@ -105,7 +111,7 @@ const photos = [
   },
   {
     id: 12,
-    url: `${import.meta.env.BASE_URL}images/photos/film/yosemite.jpg`,
+    url: withBase("images/photos/film/yosemite.jpg"),
     alt: "View from Glacier Point",
     title: "Glacier Point",
     location: "Yosemite, CA",
@@ -114,7 +120,7 @@ const photos = [
   },
     {
     id: 13,
-    url: `${import.meta.env.BASE_URL}images/photos/film/yosemite-2.jpg`,
+    url: withBase("images/photos/film/yosemite-2.jpg"),
     alt: "Hiking in Yosemite",
     title: "Hiking in Yosemite",
     location: "Yosemite, CA",
@@ -123,7 +129,7 @@ const photos = [
   },
     {
     id: 14,
-    url: `${import.meta.env.BASE_URL}images/photos/film/point-reyes.jpg`,
+    url: withBase("images/photos/film/point-reyes.jpg"),
     alt: "Point Reyes",
     title: "Point Reyes",
     location: "Point Reyes, CA",
@@ -132,7 +138,7 @@ const photos = [
   },
   {
     id: 15,
-    url: `${import.meta.env.BASE_URL}images/photos/film/california-st.jpg`,
+    url: withBase("images/photos/film/california-st.jpg"),
     alt: "View of California Street in San Francisco",
     title: "California Street",
     location: "San Francisco, CA",
@@ -141,7 +147,7 @@ const photos = [
   },
   {
     id: 16,
-    url: `${import.meta.env.BASE_URL}images/photos/digital/Empire-State-Building.jpg`,
+    url: withBase("images/photos/digital/Empire-State-Building.jpg"),
     alt: "Empire State Building",
     title: "Empire State Building",
     location: "New York City, NY",
@@ -150,7 +156,7 @@ const photos = [
   },
     {
     id: 17,
-    url: `${import.meta.env.BASE_URL}images/photos/digital/iceberg.JPG`,
+    url: withBase("images/photos/digital/iceberg.JPG"),
     alt: "Iceberg",
     title: "Iceberg",
     location: "Alaska",
@@ -159,7 +165,7 @@ const photos = [
   },
     {
     id: 18,
-    url: `${import.meta.env.BASE_URL}images/photos/digital/Mt-Fuji.JPG`,
+    url: withBase("images/photos/digital/Mt-Fuji.JPG"),
     alt: "Mount Fuji",
     title: "Mount Fuji",
     location: "Japan",
@@ -168,7 +174,7 @@ const photos = [
   },
     {
     id: 19,
-    url: `${import.meta.env.BASE_URL}images/photos/digital/neon.jpg`,
+    url: withBase("images/photos/digital/neon.jpg"),
     alt: "Neon lights in Tokyo",
     title: "Shiinamachi Station",
     location: "Tokyo, Japan",
@@ -177,7 +183,7 @@ const photos = [
   },
     {
     id: 20,
-    url: `${import.meta.env.BASE_URL}images/photos/digital/senso-ji.JPG`,
+    url: withBase("images/photos/digital/senso-ji.JPG"),
     alt: "Senso-ji Temple in Tokyo",
     title: "Senso-ji Temple",
     location: "Tokyo, Japan",
@@ -186,7 +192,7 @@ const photos = [
   },
   {
     id: 21,
-    url: `${import.meta.env.BASE_URL}images/photos/portraits/becky.jpg`,
+    url: withBase("images/photos/portraits/becky.jpg"),
     alt: "Becky with a camera",
     title: "Becky - SF Photowalk",
     location: "San Francisco, CA",
@@ -195,7 +201,7 @@ const photos = [
   },
     {
     id: 22,
-    url: `${import.meta.env.BASE_URL}images/photos/portraits/becky2.jpg`,
+    url: withBase("images/photos/portraits/becky2.jpg"),
     alt: "Becky at the beach",
     title: "Becky - Carmel Beach",
     location: "San Francisco, CA",
@@ -204,7 +210,7 @@ const photos = [
   },
   {
     id: 23,
-    url: `${import.meta.env.BASE_URL}images/photos/portraits/jonnette.jpg`,
+    url: withBase("images/photos/portraits/jonnette.jpg"),
     alt: "Jonnette grad shoot",
     title: "Jonnette - Grad Shoot",
     location: "San Marcos, CA",
@@ -213,7 +219,7 @@ const photos = [
   },
   {
     id: 24,
-    url: `${import.meta.env.BASE_URL}images/photos/portraits/jonnette2.jpg`,
+    url: withBase("images/photos/portraits/jonnette2.jpg"),
     alt: "Jonnette grad shoot",
     title: "Jonnette - Grad Shoot",
     location: "San Marcos, CA",
@@ -222,7 +228,7 @@ const photos = [
   },
   {
     id: 25,
-    url: `${import.meta.env.BASE_URL}images/photos/digital/train-driver.JPG`,
+    url: withBase("images/photos/digital/train-driver.JPG"),
     alt: "Train driver",
     title: "Arashiyama Station",
     location: "Kyoto, Japan",
@@ -231,7 +237,7 @@ const photos = [
   },
   {
     id: 26,
-    url: `${import.meta.env.BASE_URL}images/photos/digital/jr-train.JPG`,
+    url: withBase("images/photos/digital/jr-train.JPG"),
     alt: "JR Train",
     title: "JR Train",
     location: "Kyoto, Japan",
@@ -240,7 +246,7 @@ const photos = [
   },
   {
     id: 27,
-    url: `${import.meta.env.BASE_URL}images/photos/digital/boat-ride.JPG`,
+    url: withBase("images/photos/digital/boat-ride.JPG"),
     alt: "Hozugawa River Boat Ride",
     title: "Hozugawa River Boat Ride",
     location: "Kameoka, Japan",
@@ -249,7 +255,7 @@ const photos = [
   },
   {
     id: 28,
-    url: `${import.meta.env.BASE_URL}images/photos/digital/alaska-mountains.JPG`,
+    url: withBase("images/photos/digital/alaska-mountains.JPG"),
     alt: "Alaska Mountains",
     title: "Alaska Mountains",
     location: "Alaska",
@@ -258,7 +264,7 @@ const photos = [
   },
   {
     id: 29,    
-    url: `${import.meta.env.BASE_URL}images/photos/digital/nyc-bw.jpg`,
+    url: withBase("images/photos/digital/nyc-bw.jpg"),
     alt: "New York City in Black and White",
     title: "NYC B&W",
     location: "New York City, NY",
@@ -267,7 +273,7 @@ const photos = [
   },
   {
     id: 30,
-    url: `${import.meta.env.BASE_URL}images/photos/digital/sf-skyline.JPG`,
+    url: withBase("images/photos/digital/sf-skyline.JPG"),
     alt: "San Francisco Skyline",
     title: "SF Skyline Night",
     location: "San Francisco, CA",
@@ -276,7 +282,7 @@ const photos = [
   },
   {
     id: 31,
-    url: `${import.meta.env.BASE_URL}images/photos/film/shinjuku.jpg`,
+    url: withBase("images/photos/film/shinjuku.jpg"),
     alt: "Shinjuku, Tokyo",
     title: "Shinjuku Lights",
     location: "Tokyo, Japan",
@@ -285,7 +291,7 @@ const photos = [
   },
   {
     id: 32,
-    url: `${import.meta.env.BASE_URL}images/photos/portraits/julia.jpg`,
+    url: withBase("images/photos/portraits/julia.jpg"),
     alt: "JF grad shoot",
     title: "Julia - Grad Shoot",
     location: "San Marcos, CA",
@@ -294,7 +300,7 @@ const photos = [
   },
   {
     id: 33,
-    url: `${import.meta.env.BASE_URL}images/photos/portraits/michelle.jpg`,
+    url: withBase("images/photos/portraits/michelle.jpg"),
     alt: "Michelle at meta office",
     title: "Michelle - Office",
     location: "San Francisco, CA",
@@ -303,7 +309,7 @@ const photos = [
   },
   {
     id: 34,
-    url: `${import.meta.env.BASE_URL}images/photos/portraits/sri.jpg`,
+    url: withBase("images/photos/portraits/sri.jpg"),
     alt: "Sri",
     title: "Sri",
     location: "San Francisco, CA",
@@ -312,7 +318,7 @@ const photos = [
   },
   {
     id: 35,
-    url: `${import.meta.env.BASE_URL}images/photos/portraits/sri2.jpg`,
+    url: withBase("images/photos/portraits/sri2.jpg"),
     alt: "Sri work headshot",
     title: "Sri - Headshot",
     location: "San Francisco, CA",
@@ -321,7 +327,7 @@ const photos = [
   },
   {
     id: 36,
-    url: `${import.meta.env.BASE_URL}images/photos/portraits/marina-christina.jpg`,
+    url: withBase("images/photos/portraits/marina-christina.jpg"),
     alt: "Marina and Christina grad shoot",
     title: "Marina & Christina  - Grad Shoot",
     location: "San Diego, CA",
@@ -438,6 +444,8 @@ export function Photography() {
               src={photo.url}
               alt={photo.alt}
               className="w-full block transition-transform duration-500"
+              loading="lazy"
+              decoding="async"
               style={{ transform: hovered === photo.id ? "scale(1.04)" : "scale(1)" }}
             />
             {/* Hover overlay */}

@@ -9,7 +9,7 @@ export function Root() {
 
   const navLinks = [
     { to: "/", label: "Home" },
-    { to: "/#about", label: "About" },
+    { to: `${import.meta.env.BASE_URL}#about`, label: "About" },
     { to: "/photography", label: "Photography" },
   ];
 
