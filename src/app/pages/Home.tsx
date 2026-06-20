@@ -211,7 +211,7 @@ export function Home() {
                   }}
                 >
                   <img
-                    src="/images/photos/homepage/homepage.jpeg"
+                    src={`${import.meta.env.BASE_URL}images/photos/homepage/homepage.jpeg`}
                     alt="Kyrstn Hall portrait"
                     className="w-full h-full object-cover"
                   />
@@ -250,7 +250,7 @@ export function Home() {
                 className="w-64 h-64 md:w-96 md:h-96 overflow-hidden bg-muted rounded-md"
               >
                 <img
-                  src="/images/photos/homepage/about-me.jpeg"
+                  src={`${import.meta.env.BASE_URL}images/photos/homepage/about-me.jpeg`}
                   alt="About - Kyrstn Hall"
                   className="w-full h-full object-cover"
                 />
