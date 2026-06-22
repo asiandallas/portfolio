@@ -9,6 +9,8 @@ export function Home() {
   const connectorRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    if (typeof IntersectionObserver === "undefined") return;
+
     const els: Element[] = [];
     if (imgRef.current) els.push(imgRef.current);
     if (textRef.current) els.push(textRef.current);
